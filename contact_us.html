@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Kontaktu forma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
+    <style>
+        #vanta-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .message-container {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        .message-item {
+            background-color: rgba(66, 65, 65, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .quote-mark {
+            font-size: 80px;
+            color: #ff00de;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.5;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        /* Modālā loga stils */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.253);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal-close {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff00de;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-black">
+    <div id="vanta-background"></div>
+    <div class="card-3d bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-8 max-w-md w-full floating">
+        <h1 class="text-4xl font-bold mb-6 text-center text-white animate-pulse">Sazinies ar mums</h1>
+        <form id="contactForm" class="space-y-6">
+            <div class="transform transition duration-500 hover:scale-105">
+                <label for="name" class="block text-sm font-medium text-white">Jūsu vārds</label>
+                <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md bg-opacity-50 bg-gray-800 backdrop-filter backdrop-blur-sm border-transparent focus:border-pink-500 focus:bg-gray-700 focus:ring-0 text-white">
+            </div>
+            <div class="transform transition duration-500 hover:scale-105">
+                <label for="additionalInfo" class="block text-sm font-medium text-white">Papildinformācija (piem., kolektīvs, dzīves nostāja)</label>
+                <input type="text" id="additionalInfo" name="additionalInfo" class="mt-1 block w-full rounded-md bg-opacity-50 bg-gray-800 backdrop-filter backdrop-blur-sm border-transparent focus:border-pink-500 focus:bg-gray-700 focus:ring-0 text-white">
+            </div>
+            <div class="transform transition duration-500 hover:scale-105">
+                <label for="message" class="block text-sm font-medium text-white">Jūsu ziņojums</label>
+                <textarea id="message" name="message" rows="4" required class="mt-1 block w-full rounded-md bg-opacity-50 bg-gray-800 backdrop-filter backdrop-blur-sm border-transparent focus:border-pink-500 focus:bg-gray-700 focus:ring-0 text-white"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-4 rounded-md hover:from-purple-600 hover:to-pink-600 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 animate-pulse">
+                Nosūtīt
+            </button>
+        </form>
+        
+        <div class="message-container">
+            <div id="messageContainer"></div>
+        </div>
+    </div>
+
+    <!-- Modālais logs -->
+    <div id="thankYouModal" class="modal">
+        <div class="modal-content">
+            <p>Paldies par komentāru, nav tā ka Jūsu viedoklis būtu svarīgs, bet tik un tā patīkami.</p>
+            <button class="modal-close">Aizvērt</button>
+        </div>
+    </div>
+
+    <script>
+        VANTA.NET({
+            el: "#vanta-background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xff00de,
+            backgroundColor: 0x000000
+        })
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var name = document.getElementById('name').value;
+            var additionalInfo = document.getElementById('additionalInfo').value;
+            var message = document.getElementById('message').value;
+            
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message-item';
+            messageDiv.innerHTML = `
+                <div class="quote-mark">"</div>
+                <p class="text-white mb-4">${message}</p>
+                <div class="flex items-center">
+                    <img src="/api/placeholder/50/50" alt="${name}" class="avatar mr-3">
+                    <div>
+                        <p class="font-semibold text-white">${name}</p>
+                        <p class="text-gray-400 text-sm">${additionalInfo}</p>
+                    </div>
+                </div>
+            `;
+            
+            var messageContainer = document.getElementById('messageContainer');
+            messageContainer.insertBefore(messageDiv, messageContainer.firstChild);
+            
+            document.getElementById('name').value = '';
+            document.getElementById('additionalInfo').value = '';
+            document.getElementById('message').value = '';
+
+            messageDiv.animate([
+                { opacity: 0, transform: 'translateY(-20px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+            ], {
+                duration: 500,
+                easing: 'ease-out'
+            });
+
+            // Rāda modālo logu
+            var modal = document.getElementById('thankYouModal');
+            modal.style.display = 'flex';
+        });
+
+        // Aizver modālo logu
+        document.querySelector('.modal-close').addEventListener('click', function() {
+            var modal = document.getElementById('thankYouModal');
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
