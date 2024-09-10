@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Kontaktu forma</title>
+    <title>Kontaktu forma</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.net.min.js"></script>
@@ -60,7 +60,6 @@
             border-radius: 50%;
             object-fit: cover;
         }
-        /* Modālā loga stils */
         .modal {
             display: none;
             position: fixed;
@@ -96,7 +95,7 @@
     <div id="vanta-background"></div>
     <div class="card-3d bg-black bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-2xl shadow-2xl p-8 max-w-md w-full floating">
         <h1 class="text-4xl font-bold mb-6 text-center text-white animate-pulse">Sazinies ar mums</h1>
-        <form id="contactForm" class="space-y-6">
+        <form id="contactForm" action="https://formspree.io/f/mrbzvzop" method="POST" class="space-y-6">
             <div class="transform transition duration-500 hover:scale-105">
                 <label for="name" class="block text-sm font-medium text-white">Jūsu vārds</label>
                 <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md bg-opacity-50 bg-gray-800 backdrop-filter backdrop-blur-sm border-transparent focus:border-pink-500 focus:bg-gray-700 focus:ring-0 text-white">
@@ -119,7 +118,6 @@
         </div>
     </div>
 
-    <!-- Modālais logs -->
     <div id="thankYouModal" class="modal">
         <div class="modal-content">
             <p>Paldies par komentāru, nav tā ka Jūsu viedoklis būtu svarīgs, bet tik un tā patīkami.</p>
@@ -144,10 +142,37 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            var name = document.getElementById('name').value;
-            var additionalInfo = document.getElementById('additionalInfo').value;
-            var message = document.getElementById('message').value;
+            var form = this;
+            var formData = new FormData(form);
             
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Kļūda nosūtot ziņojumu');
+                }
+            }).then(data => {
+                // Pievieno ziņojumu lokāli
+                addMessageToContainer(formData.get('name'), formData.get('additionalInfo'), formData.get('message'));
+                
+                // Notīra formu
+                form.reset();
+                
+                // Parāda pateicības modālo logu
+                document.getElementById('thankYouModal').style.display = 'flex';
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Kļūda nosūtot ziņojumu. Lūdzu, mēģiniet vēlreiz.');
+            });
+        });
+
+        function addMessageToContainer(name, additionalInfo, message) {
             var messageDiv = document.createElement('div');
             messageDiv.className = 'message-item';
             messageDiv.innerHTML = `
@@ -164,10 +189,6 @@
             
             var messageContainer = document.getElementById('messageContainer');
             messageContainer.insertBefore(messageDiv, messageContainer.firstChild);
-            
-            document.getElementById('name').value = '';
-            document.getElementById('additionalInfo').value = '';
-            document.getElementById('message').value = '';
 
             messageDiv.animate([
                 { opacity: 0, transform: 'translateY(-20px)' },
@@ -176,16 +197,11 @@
                 duration: 500,
                 easing: 'ease-out'
             });
-
-            // Rāda modālo logu
-            var modal = document.getElementById('thankYouModal');
-            modal.style.display = 'flex';
-        });
+        }
 
         // Aizver modālo logu
         document.querySelector('.modal-close').addEventListener('click', function() {
-            var modal = document.getElementById('thankYouModal');
-            modal.style.display = 'none';
+            document.getElementById('thankYouModal').style.display = 'none';
         });
     </script>
 </body>
