@@ -1,0 +1,246 @@
+<!doctype html>
+<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-gb" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--[if lt IE 9]> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+<title>Quadrille.lg </title>
+<meta name="description" content="">
+<meta name="author" content="WebThemez">
+<!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<!--[if lte IE 8]>
+		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
+	<![endif]-->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
+<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+<link href="css/animate.css" rel="stylesheet" media="screen">
+<link href="flexslider/flexslider.css" rel="stylesheet" />
+<link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="font/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modernais Attēlu Atskaņotājs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .image-player {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .image-container {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .image-player img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .image-player img.active {
+            opacity: 1;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .controls button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: #45a049;
+        }
+
+        .image-link {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .image-link a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .image-link a:hover {
+            text-decoration: underline;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #ddd;
+        }
+
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.1s linear;
+        }
+
+        .image-counter {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-player">
+        <div class="image-container">
+            <img src="/api/placeholder/800/450" alt="Attēls 1" class="active" data-link="https://example.com/source1">
+            <img src="/api/placeholder/800/450" alt="Attēls 2" data-link="https://example.com/source2">
+            <img src="/api/placeholder/800/450" alt="Attēls 3" data-link="https://example.com/source3">
+            <img src="/api/placeholder/800/450" alt="Attēls 4" data-link="https://example.com/source4">
+            <img src="/api/placeholder/800/450" alt="Attēls 5" data-link="https://example.com/source5">
+            <div class="image-counter">1 / 5</div>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="controls">
+            <button onclick="prevImage()">Iepriekšējais</button>
+            <button onclick="toggleAutoplay()" id="autoplayBtn">Apturēt automātisko atskaņošanu</button>
+            <button onclick="nextImage()">Nākamais</button>
+        </div>
+        <div class="image-link">
+            <a href="https://example.com/source1" target="_blank" id="source-link">Avots: example.com</a>
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.image-player img');
+        const sourceLink = document.getElementById('source-link');
+        const progressBar = document.querySelector('.progress');
+        const imageCounter = document.querySelector('.image-counter');
+        let autoplayInterval;
+        let isAutoplayOn = true;
+
+        function updateImage() {
+            images.forEach((img, index) => {
+                img.classList.remove('active');
+                if (index === currentImageIndex) {
+                    img.classList.add('active');
+                    sourceLink.href = img.getAttribute('data-link');
+                    sourceLink.textContent = 'Avots: ' + new URL(img.getAttribute('data-link')).hostname;
+                }
+            });
+            imageCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+            resetProgress();
+        }
+
+        function nextImage() {
+            gsap.to(images[currentImageIndex], { opacity: 0, duration: 0.5 });
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            gsap.to(images[currentImageIndex], { opacity: 1, duration: 0.5 });
+            updateImage();
+        }
+
+        function prevImage() {
+            gsap.to(images[currentImageIndex], { opacity: 0, duration: 0.5 });
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            gsap.to(images[currentImageIndex], { opacity: 1, duration: 0.5 });
+            updateImage();
+        }
+
+        function resetProgress() {
+            progressBar.style.width = '0%';
+            if (isAutoplayOn) {
+                animateProgress();
+            }
+        }
+
+        function animateProgress() {
+            gsap.to(progressBar, {
+                width: '100%',
+                duration: 3,
+                ease: 'none',
+                onComplete: () => {
+                    if (isAutoplayOn) {
+                        nextImage();
+                    }
+                }
+            });
+        }
+
+        function toggleAutoplay() {
+            isAutoplayOn = !isAutoplayOn;
+            const autoplayBtn = document.getElementById('autoplayBtn');
+            if (isAutoplayOn) {
+                autoplayBtn.textContent = 'Apturēt automātisko atskaņošanu';
+                animateProgress();
+            } else {
+                autoplayBtn.textContent = 'Sākt automātisko atskaņošanu';
+                gsap.killTweensOf(progressBar);
+            }
+        }
+
+        updateImage();
+        animateProgress();
+    </script>
+</body>
+</html>
