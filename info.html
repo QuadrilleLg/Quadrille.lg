@@ -37,25 +37,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teksts un Attēls</title>
+    <title>Teksts un Attēls - Responsīvs dizains</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
         .container {
             display: flex;
-            align-items: center;
-            max-width: 800px;
+            flex-direction: column;
+            max-width: 1000px;
             margin: 0 auto;
-        }
-        .text {
-            flex: 1;
-            padding-right: 20px;
+            padding: 20px;
         }
         .image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .text {
             flex: 1;
         }
         .more-info {
             color: blue;
             text-decoration: underline;
             cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+            .image {
+                flex: 1;
+                margin-top: 0;
+                margin-left: 20px;
+            }
+            .text {
+                flex: 1;
+            }
         }
     </style>
 </head>
@@ -63,115 +89,13 @@
     <div class="container">
         <div class="text">
             <h1>Apģērbs</h1>
-            <p>Aristokrātu apģērbs kadriļu ballēs muižās bija pārsteidzošs greznības un ekstravagances apliecinājums. Dāmas tērpās krāšņās kleitās ar šauriem vidukļiem un plašiem krinolīniem, kas vēlāk pārtapa bustlēs. Kleitas rotāja dārgi audumi, mežģīnes un izšuvumi. Dekoltē bija dziļi, bet rokas parasti piesegtas ar cimdiem. Vīrieši lepojās ar perfekti piegrieztiem frakuzmetniem, žaketēm un bikses ar augstu jostas vietu.</p>
-            <p>Savukārt zemnieku kadriļu balles šķūņos bija krāsainākas un praktiskākas, bet ne mazāk aizraujošas. Sievietes valkāja vienkāršākas, bet joprojām košas kleitas ar platākiem brunčiem, kas atviegloja kustības deju laikā. Blūzes bija rotātas ar lentēm un mežģīnēm, ko bieži vien darināja pašas. Vīriešu apģērbs sastāvēja no vienkāršām biksēm, krekliem un vestēm, bieži papildināts ar raksturīgām cepurēm.</p>
-            <p><a href="outfits.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
-        </div>
-        <div class="image">
-            <p><img src="images/outfits/outfit1.jpeg" alt="pīpējošs vecis"></p>
-            <p><img src="images/outfits/outfit2.jpeg" alt="pīpējošs vecis"></p>
-        </div>
-    </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="lv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attēls un Teksts</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-right: 20px;
-        }
-        .text {
-            flex: 1;
-        }
-        .more-info {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="image">
-            <img src="/api/placeholder/400/300" alt="Attēla apraksts">
-        </div>
-        <div class="text">
-            <h1>Virsraksts</h1>
-            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Attēls tagad atrodas kreisajā pusē, bet teksts ir labajā pusē blakus attēlam.</p>
+            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Uz mobilajām ierīcēm attēls būs zem teksta, bet uz lielākiem ekrāniem teksts būs kreisajā pusē un attēls - labajā pusē.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p><a href="vairak-info.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
-        </div>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="lv">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teksts un Attēls</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            display: flex;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .text {
-            flex: 1;
-            padding-right: 20px;
-        }
-        .image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .more-info {
-            color: blue;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="text">
-            <h1>Matu sakārtojums.</h1>
-            <p>Dāmas veltīja stundas, lai radītu īstus mākslas darbus uz savām galvām.</p>
-            <p>Matu modes bija tikpat sarežģītas un pārsteidzošas kā tā laika sabiedrība.
-             Populāri kļuva milzīgi, kupli uzkārtojumi, kas tika veidoti, izmantojot matu veltnīšus, sprādzes un pat svešus matus. Šie uzkārtojumi varēja sasniegt astronomiskus augstumus, radot iespaidu, ka sievietes galva ir dubultojusies izmēros.
-Parādījās daudzveidīgāki stili. Īpaši iecienītas kļuva "Pompadour" frizūras ar augsti uzsukātiem matiem virs pieres. Tika izmantoti arī mākslīgi matu pieaudzējumi un dekoratīvas sprādzes, lai radītu sarežģītas formas.
-Šīs frizūras nebija tikai modes kaprīze - tās bija statusa un bagātības simbols. Jo sarežģītāka frizūra, jo vairāk laika un naudas tā prasīja, tādējādi demonstrējot sievietes sociālo stāvokli. </p>
             <p><a href="haircut.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
         </div>
         <div class="image">
-            <img src="images/haircut.jpeg" alt="Attēla apraksts">
+            <img src="images/outfits/outfit1.jpeg" alt="Attēla apraksts">
+            <img src="images/outfits/outfit2.jpeg" alt="Attēla apraksts">
         </div>
     </div>
 </body>
