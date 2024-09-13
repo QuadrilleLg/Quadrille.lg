@@ -249,3 +249,71 @@
     </div>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teksts un Attēls - Responsīvs dizains</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .text {
+            flex: 1;
+        }
+        .more-info {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+            .image {
+                flex: 1;
+                margin-top: 0;
+                margin-left: 20px;
+            }
+            .text {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <h1>Kadriļu deju reģionālās atšķirības</h1>
+            <p>kā kadriļu dejas ir pielāgojušās un attīstījušās dažādos reģionos. Katrai valstij vai reģionam ir savas unikālas iezīmes, kas atspoguļo vietējo kultūru un tradīcijas.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p><a href="quadrille_info.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
+        </div>
+        <div class="image">
+            <img src="images/quadrille_info/image(24).png" alt="Attēla apraksts">
+        </div>
+    </div>
+</body>
+</html>
