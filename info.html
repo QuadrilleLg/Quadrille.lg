@@ -11,7 +11,7 @@
 <!--[if lt IE 9]> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-<title>Quadrille.lg/info </title>
+<title>Quadrille.lv/info </title>
 <meta name="description" content="">
 <meta name="author" content="WebThemez">
 <!--[if lt IE 9]>
@@ -32,15 +32,22 @@
 <link href="font/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
+      <!-- Heading -->
+      <div class="heading text-center"> 
+      <h1>Par kadriļu dejām.</h1>
+      <p>"Aristokrāti dejoja, lai parādītu ne tikai savas manieres, bet arī savu vietu sabiedrības hierarhijā."</p>
+    </div>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quadrille.lv/info</title>
+    <title>Par kadriju pasauli</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #e967677a;
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -59,7 +66,7 @@
             margin-top: 20px;
         }
         .image img {
-            max-width: 60%;
+            max-width: 100%;
             height: auto;
         }
         .text {
@@ -68,6 +75,11 @@
         .more-info {
             color: blue;
             text-decoration: underline;
+            cursor: pointer;
+        }
+        p2 {
+            color: rgb(2, 2, 2);
+            text-decoration: line;
             cursor: pointer;
         }
         @media (min-width: 768px) {
@@ -88,14 +100,13 @@
 <body>
     <div class="container">
         <div class="text">
-            <h1>Apģērbs</h1>
-            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Uz mobilajām ierīcēm attēls būs zem teksta, bet uz lielākiem ekrāniem teksts būs kreisajā pusē un attēls - labajā pusē.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p><a href="haircut.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
+            <h1>kadriļas</h1>
+            <p>Katrai valstij vai reģionam ir savas unikālas iezīmes, kas atspoguļo vietējo kultūru un tradīcijas.</p>
+            <p>Tālākie piemēri parāda, kā kadriļu dejas ir pielāgojušās un attīstījušās dažādos reģionos. </p>
+            <p><a href="quadrille_info.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
         </div>
         <div class="image">
-            <img src="images/outfits/outfit1.jpeg" alt="Attēla apraksts">
-            <img src="images/outfits/outfit2.jpeg" alt="Attēla apraksts">
+            <img src="images/quadrille_info/image(24).png" alt="Attēla apraksts">
         </div>
     </div>
 </body>
@@ -127,6 +138,76 @@
             align-items: center;
             margin-bottom: 20px;
         }
+        
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .text {
+            flex: 1;
+        }
+        .more-info {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        @media (min-width: 500px) {
+            .container {
+                flex-direction: row;
+            }
+            .image {
+                flex: 1;
+                margin-bottom: 0;
+                margin-right: 150px;
+            }
+            .text {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="images/outfits/outfit1.jpeg" alt="Attēla apraksts">
+            <img src="images/outfits/outfit2.jpeg" alt="Attēla apraksts">
+        </div>
+        <div class="text">
+            <h1>Apģērbs.</h1>
+            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Uz mobilajām ierīcēm attēls būs virs teksta, bet uz lielākiem ekrāniem attēls būs kreisajā pusē un teksts - labajā pusē.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p><a href="outfits.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
+        </div>
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teksts un Attēls - Responsīvs dizains</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
         .image img {
             max-width: 100%;
             height: auto;
@@ -145,8 +226,8 @@
             }
             .image {
                 flex: 1;
-                margin-bottom: 0;
-                margin-right: 20px;
+                margin-top: 0;
+                margin-left: 20px;
             }
             .text {
                 flex: 1;
@@ -156,14 +237,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="image">
-            <img src="images/haircut.jpeg/400/300" alt="Attēla apraksts">
-        </div>
         <div class="text">
-            <h1>Matu sakārtojums.</h1>
-            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Uz mobilajām ierīcēm attēls būs virs teksta, bet uz lielākiem ekrāniem attēls būs kreisajā pusē un teksts - labajā pusē.</p>
+            <h1>Virsraksts</h1>
+            <p>Šeit ir jūsu teksts. Tas var būt tik garš, cik nepieciešams. Uz mobilajām ierīcēm attēls būs zem teksta, bet uz lielākiem ekrāniem teksts būs kreisajā pusē un attēls - labajā pusē.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p><a href="outfits.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
+            <p><a href="haircut.html" class="more-info" target="_blank">Skatīt vairāk info</a></p>
+        </div>
+        <div class="image">
+            <img src="images/haircut.jpeg" alt="Attēla apraksts">
         </div>
     </div>
 </body>

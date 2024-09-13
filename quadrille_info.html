@@ -11,7 +11,7 @@
 <!--[if lt IE 9]> 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
-<title>Quadrille.lv/outfits </title>
+<title>Quadrille.lv/quadrille_info </title>
 <meta name="description" content="">
 <meta name="author" content="WebThemez">
 <!--[if lt IE 9]>
@@ -37,7 +37,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vēsturiskais Attēlu Atskaņotājs</title>
+    <title>Vēsturiskais Attēlu Atskaņotājs ar Tekstu</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -52,9 +52,12 @@
             min-height: 100vh;
         }
 
-        .image-player {
-            max-width: 350px;
+        .container {
+            max-width: 800px;
             width: 100%;
+        }
+
+        .image-player {
             background-color: #fff;
             border: 15px solid #8b4513;
             border-radius: 5px;
@@ -65,7 +68,7 @@
 
         .image-container {
             position: relative;
-            aspect-ratio: 9 / 16;
+            aspect-ratio: 40 / 12;
             overflow: hidden;
         }
 
@@ -160,30 +163,110 @@
             background-color: #8b4513;
             color: #f0e6d2;
         }
+
+        .text-content {
+            margin-top: 20px;
+            color: #4a3520;
+            font-size: 16px;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
-    <div class="image-player">
-        <div class="image-container">
-            <img src="images/outfits/1900s Brown Bolero Jacket.jpeg" alt="Attēls 1" class="active" data-link="https://example.com/source1">
-            <img src="images/outfits/9RHPyOkx.jpeg" alt="Attēls 2" data-link="https://example.com/source2">
-            <img src="images/outfits/axVlwN4M.jpeg" alt="Attēls 3" data-link="https://example.com/source3">
-            <img src="images/outfits/dc-gr93v.jpeg" alt="Attēls 4" data-link="https://example.com/source4">
-            <img src="images/outfits/EIlGOhvP.jpeg" alt="Attēls 5" data-link="https://example.com/source5">
-            <div class="image-counter">1 / 5</div>
+    <div class="container">
+        <div class="image-player">
+            <div class="image-container">
+                <img src="images/quadrille_info/image(14).png" alt="Attēls 1" class="active" data-link="https://example.com/source1">
+                <img src="images/quadrille_info/image(15).png" alt="Attēls 2" data-link="https://example.com/source2">
+                <img src="images/quadrille_info/image(18).png" alt="Attēls 3" data-link="https://example.com/source3">
+                <img src="images/quadrille_info/image(19).png" alt="Attēls 4" data-link="https://example.com/source4">
+                <img src="images/quadrille_info/image(20).png" alt="Attēls 5" data-link="https://example.com/source5">
+                <img src="images/quadrille_info/image(21).png" alt="Attēls 5" data-link="https://example.com/source6">
+                <img src="images/quadrille_info/image(21).png" alt="Attēls 5" data-link="https://example.com/source7">
+                <img src="images/quadrille_info/image(2).png" alt="Attēls 5" data-link="https://example.com/source8">
+                <div class="image-counter">1 / 8</div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="controls">
+                <button onclick="prevImage()"><i class="fas fa-chevron-left"></i></button>
+                <button id="autoplayBtn" onclick="toggleAutoplay()">Apturēt automātisko atskaņošanu</button>
+                <button onclick="nextImage()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="image-link">
+                <a href="https://example.com/source1" target="_blank" id="source-link">Avots: example.com</a>
+            </div>
         </div>
-        <div class="progress-bar">
-            <div class="progress"></div>
-        </div>
-        <div class="controls">
-            <button onclick="prevImage()"><i class="fas fa-chevron-left"></i></button>
-            <button id="autoplayBtn" onclick="toggleAutoplay()">Apturēt automātisko atskaņošanu</button>
-            <button onclick="nextImage()"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="image-link">
-            <a href="https://example.com/source1" target="_blank" id="source-link">Avots: example.com</a>
+        <div class="text-content">
+            <div class="heading text-center"> 
+            <h2>Kadriļu deju reģionālās atšķirības</h2>
+            <h1>Francija</h1>
+                <p><img src="images/quadrille_info/image(15).png" alt="Attēls">
+                <p>Sarežģītākas figūras un elegantākas kustības</p>
+                <p>Izcelsmes vieta klasiskajām kadriļu dejām</p>
+                <p>Bieži dejots aristokrātu ballēs un galmos</p>
+                <p>Populārākās formas: Quadrille des Lanciers, Quadrille Français</p>
         </div>
     </div>
+
+    <div class="text-content">
+        <div class="heading text-center"> 
+        <h1>Anglija</h1>
+            <p><img src="images/quadrille_info/image(18).png" alt="Attēls">
+            <p>Vairāk koncentrējas uz līniju formācijām
+            <p>Deja bieži sākas ar partneru sasveicināšanos</p>
+            <p>Populāra "Country Dance" forma, kas ir līdzīga kadriļu dejām</p>
+            <p>Bieži iekļauj "do-si-do" figūru (partneri apiet viens otram apkārt)</p>
+    
+
+<div class="text-content">
+    <div class="heading text-center"> 
+    <h1>Īrija</h1>
+        <p><img src="images/quadrille_info/image(21).png" alt="Attēls">
+        <p>Ātrs temps un dzīvespriecīgs raksturs</p>
+        <p>Bieži iekļauj solo deju elementus</p>
+        <p>Populāra "Ceili" deja, kas ir līdzīga kadriļu dejām</p>
+        <p>Dejotāji bieži veido kvadrātus vai apļus</p>
+
+        <div class="text-content">
+    <div class="heading text-center"> 
+    <h1>Vācija</h1>
+        <p><img src="images/quadrille_info/image(19).png" alt="Attēls">
+        <p>"Françaises" - vācu versija franču kadriļu dejām</p>
+        <p>Bieži iekļauj valša elementus</p>
+        <p>Precīzākas un strukturētākas kustības</p>
+        <p>Populāra ballēs un formālos pasākumos</p>
+
+        <div class="text-content">
+            <div class="heading text-center"> 
+            <h1>Amerikas Savienotās Valstis</h1>
+                <p><img src="images/quadrille_info/image(22).png" alt="Attēls">
+                <p>Attīstījās "Square Dance" forma, kas ir cieši saistīta ar kadriļu dejām</p>
+                <p>Bieži iekļauj "caller" - personu, kas sauc deju soļus</p>
+                <p>Vairāk neformāla un brīvāka stila deja</p>
+                <p>Populāra lauku reģionos un folk festivālos</p>
+
+                <div class="text-content">
+                    <div class="heading text-center"> 
+                    <h1>Krievija</h1>
+                        <p><img src="images/quadrille_info/image(20).png" alt="Attēls">
+                        <p>Ietekmēta gan no Rietumeiropas, gan vietējām tautas dejām</p>
+                        <p>Bieži iekļauj lielāku skaitu dejotāju</p>
+                        <p>Var iekļaut elementi no tradicionālajām krievu dejām, piemēram, "prisyadka" (pietupieni)</p>
+                        <p>Populāra cara galmā un aristokrātu aprindās 19. gadsimtā</p>
+                        
+                        <div class="text-content">
+                            <div class="heading text-center"> 
+                            <h1>Latvija</h1>
+                                <p><img src="images/quadrille_info/image(24).png" alt="Attēls">
+                                <p>Kadriļu dejas Latvijā ir cieši saistītas ar tautas deju tradīcijām</p>
+                                <p>Bieži tiek dejots tautas svētkos un zaļumballēs</p>
+                                <p>Iekļauj elementus no latviešu tradicionālajām dejām, piemēram, polkas soļus</p>
+                                <p>Populārākās formas: "Jautrā kadriļa", "Kadrilis ar maiņām"</p>
+                                <p>Raksturīgas četru pāru kvadrāta formācijas</p>
+                                <p>Dejas bieži pavada tradicionālie mūzikas instrumenti, piemēram, ermoņikas vai vijole</p>
+                                <p>Kadriļu dejas Latvijā ir saglabājušas savu popularitāti un tiek mācītas tautas deju kolektīvos</p>
 
     <script>
         let currentImageIndex = 0;
