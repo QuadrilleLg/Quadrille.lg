@@ -157,13 +157,20 @@
                 flex-direction: column;
             }
 
-            .tutorial .video-section iframe {
-                border-radius: 20px 10px 0 0;
-            }
+            .tutorial .video-section {
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 Malu attiecība */
+  position: relative;
+}
 
-            .tutorial .text-section {
-                padding: 5px;
-            }
+.tutorial .video-section iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px 15px 0 0;
+}
         }
     </style>
 </head>
