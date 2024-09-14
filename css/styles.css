@@ -1225,12 +1225,7 @@ padding:35px 0;
 	float: left;
 	margin: 0 3px 3px 0;
 	opacity: 1;
-	-webkit-transform: scale(1, 1);
-	-webkit-transition-timing-function: ease-out;
-	-webkit-transition-duration: 250ms;
-	-moz-transform: scale(1, 1);
-	-moz-transition-timing-function: ease-out;
-	-moz-transition-duration: 250ms;
+	
 }
 .portfolio-item:hover .folio-info {
 	top: 0px;
@@ -1268,7 +1263,7 @@ font-size:30px;
 
 @media (max-width: 480px) {
 .header{
-background: #38BEE7;
+background: #38bee773;
 }
 .banner-container {
 	background-size: contain;
